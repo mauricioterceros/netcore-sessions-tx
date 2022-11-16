@@ -26,7 +26,7 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-// app.UseGlobalExceptionHandler();
+app.UseGlobalExceptionHandler();
 // app.UseExceptionHandler();
 // app.UseHsts();
 // app.UseHttpsRedirection();

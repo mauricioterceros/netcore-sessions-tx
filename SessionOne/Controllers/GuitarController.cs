@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using CoreLogic;
+using Models;
 
 namespace SessionOne.Controllers;
 
@@ -31,9 +32,9 @@ public class GuitarController : ControllerBase
 
     [HttpPost]
     [Route("create-guitar")]
-    public IActionResult CreateGuitar(string guitarName)
+    public IActionResult CreateGuitar([FromBody]GuitarDTO guitar, [FromHeader]string userName)
     {
-        this.guitarMgr.AddNewGuitar(guitarName);
+        this.guitarMgr.AddNewGuitar(guitar.Name);
 
         return Ok(this.guitarMgr.GetAllGuitars());
     }

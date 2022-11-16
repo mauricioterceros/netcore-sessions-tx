@@ -1,9 +1,22 @@
+using Newtonsoft.Json;
+
 namespace externalServices;
 public class User
 {
-    public string first_name;
+    // private string _lastName; // property
 
-    // [JSON("")]
-    // public string FirstName;
-    public string last_name;
+    [JsonProperty("first_name")] // attribute
+    public string FirstName { get; set; } // Property
+
+    [JsonProperty("last_name")]
+    public string LastName { get; set; }
+
+    /*
+    public string getLastName() {
+        return last_name;
+    }
+    public void setLastName(string lastName) {
+        last_name = lastName;
+    }
+    */
 }

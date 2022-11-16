@@ -16,10 +16,10 @@ public class ExternalUserController : ControllerBase
 
     [HttpGet]
     [Route("get-external-users")]
-    public IActionResult GetExternalUsers()
+    public IActionResult GetExternalUsers() 
     {
-        List<User> usersResult = _userService.GetExternalUsersAsync().Result;
-        Console.WriteLine(usersResult[0].first_name);
+        List<externalServices.User> usersResult = _userService.GetExternalUsersAsync().Result;
+        Console.WriteLine(usersResult[0].FirstName);
         return Ok(usersResult);
     }
 }

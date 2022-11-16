@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace SessionOne.Middlewares;
 
 public class GlobalExceptionHandlerMiddleware
@@ -16,9 +18,17 @@ public class GlobalExceptionHandlerMiddleware
         {
             await _next(httpContext);
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
-            throw;
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.InnerException != null ? ex.InnerException.StackTrace : ex.StackTrace);
+            var responseWithError = new {
+                message = ex.Message,
+                applicationName = "netCoreSession"
+            };
+
+            httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            httpContext.Response.WriteAsJsonAsync(JsonConvert.SerializeObject(responseWithError));
         }
     }
 }

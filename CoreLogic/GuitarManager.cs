@@ -15,6 +15,11 @@ public class GuitarManager
 
     public Guitar AddNewGuitar(string guitarName)
     {
+        if (String.IsNullOrEmpty(guitarName))
+        {
+            throw new Exception("nombre invalido");
+        }
+
         Guitar createdGuitar = new Guitar() { Name = guitarName, Id = "0"};
         guitars.Add(createdGuitar);
 
